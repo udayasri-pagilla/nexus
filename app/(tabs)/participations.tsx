@@ -32,22 +32,32 @@ export default function Participations() {
   return (
     <View style={{ flex: 1, backgroundColor: colors.background }}>
       
-      {/* 🔹 HEADER */}
+      {/* 🔹 HEADER (FLAT, CLEAR HIERARCHY) */}
       <View
         style={{
-          padding: spacing.md,
-          borderBottomWidth: 1,
-          borderColor: colors.border,
+          paddingHorizontal: spacing.md,
+          paddingTop: spacing.lg,
+          paddingBottom: spacing.md,
         }}
       >
         <Text
           style={{
-            fontSize: 20,
+            fontSize: 22,
             fontWeight: "700",
             color: colors.textPrimary,
           }}
         >
           My Participations
+        </Text>
+
+        <Text
+          style={{
+            marginTop: spacing.xs,
+            fontSize: 14,
+            color: colors.textSecondary,
+          }}
+        >
+          Track the opportunities you’ve applied to and their current status.
         </Text>
       </View>
 
@@ -57,7 +67,7 @@ export default function Participations() {
         keyExtractor={(item) => item.id}
         contentContainerStyle={{
           padding: spacing.md,
-          paddingBottom: spacing.lg,
+          paddingBottom: spacing.xl,
         }}
         renderItem={({ item }) => (
           <OpportunityCard
@@ -66,7 +76,7 @@ export default function Participations() {
             status={<StatusBadge status={item.status} />}
             onPress={() =>
               router.push({
-                pathname: "../opportunity/[id]",
+                pathname: "/opportunity/[id]",
                 params: { id: item.id },
               })
             }

@@ -14,17 +14,17 @@ export default function Profile() {
   return (
     <View style={{ flex: 1, backgroundColor: colors.background }}>
       
-      {/* 🔹 HEADER */}
+      {/* 🔹 HEADER (FLAT) */}
       <View
         style={{
-          padding: spacing.md,
-          borderBottomWidth: 1,
-          borderColor: colors.border,
+          paddingHorizontal: spacing.md,
+          paddingTop: spacing.lg,
+          paddingBottom: spacing.md,
         }}
       >
         <Text
           style={{
-            fontSize: 20,
+            fontSize: 22,
             fontWeight: "700",
             color: colors.textPrimary,
           }}
@@ -33,25 +33,36 @@ export default function Profile() {
         </Text>
       </View>
 
-      {/* 🔹 PROFILE CONTENT */}
-      <View style={{ padding: spacing.md }}>
-        
+      {/* 🔹 PROFILE CARD */}
+      <View
+        style={{
+          marginHorizontal: spacing.md,
+          backgroundColor: colors.card,
+          borderRadius: 20,
+          padding: spacing.lg,
+          alignItems: "center",
+          shadowColor: "#000",
+          shadowOpacity: 0.06,
+          shadowRadius: 12,
+          shadowOffset: { width: 0, height: 6 },
+          elevation: 4,
+        }}
+      >
         {/* Avatar */}
         <View
           style={{
-            height: 80,
-            width: 80,
-            borderRadius: 40,
+            height: 96,
+            width: 96,
+            borderRadius: 48,
             backgroundColor: colors.primary,
             justifyContent: "center",
             alignItems: "center",
-            alignSelf: "center",
           }}
         >
           <Text
             style={{
               color: "#fff",
-              fontSize: 32,
+              fontSize: 36,
               fontWeight: "700",
             }}
           >
@@ -63,10 +74,9 @@ export default function Profile() {
         <Text
           style={{
             marginTop: spacing.md,
-            fontSize: 18,
+            fontSize: 20,
             fontWeight: "600",
             color: colors.textPrimary,
-            textAlign: "center",
           }}
         >
           {user.name}
@@ -77,7 +87,7 @@ export default function Profile() {
           style={{
             marginTop: spacing.xs,
             color: colors.textSecondary,
-            textAlign: "center",
+            fontSize: 14,
           }}
         >
           {user.email}
@@ -88,34 +98,40 @@ export default function Profile() {
           style={{
             marginTop: spacing.sm,
             color: colors.textSecondary,
-            textAlign: "center",
+            fontSize: 14,
           }}
         >
           {user.organization}
         </Text>
+      </View>
 
-        {/* 🔹 ACCOUNT ACTIONS */}
-        <View style={{ marginTop: spacing.xl }}>
-          <Pressable
-            onPress={() => console.log("Logout pressed")}
+      {/* 🔹 ACTIONS */}
+      <View
+        style={{
+          marginTop: spacing.xxl,
+          marginHorizontal: spacing.md,
+        }}
+      >
+        <Pressable
+          onPress={() => console.log("Logout pressed")}
+          style={{
+            borderWidth: 1,
+            borderColor: colors.danger,
+            paddingVertical: spacing.md,
+            borderRadius: 14,
+          }}
+        >
+          <Text
             style={{
-              borderWidth: 1,
-              borderColor: colors.danger,
-              paddingVertical: spacing.md,
-              borderRadius: 8,
+              color: colors.danger,
+              textAlign: "center",
+              fontWeight: "600",
+              fontSize: 15,
             }}
           >
-            <Text
-              style={{
-                color: colors.danger,
-                textAlign: "center",
-                fontWeight: "600",
-              }}
-            >
-              Logout
-            </Text>
-          </Pressable>
-        </View>
+            Logout
+          </Text>
+        </Pressable>
       </View>
     </View>
   );

@@ -1,9 +1,9 @@
 // theme/spacing.ts
-
 export const spacing = {
-  xs: 4,
-  sm: 8,
-  md: 16,
-  lg: 24,
-  xl: 32,
+  xs: 4,     // tiny gaps (icon-text, badge padding)
+  sm: 8,     // small gaps (between text lines)
+  md: 16,    // default padding (screens, cards)
+  lg: 24,    // section spacing
+  xl: 32,    // major breaks
+  xxl: 40,   // large vertical separation (hero sections)
 };

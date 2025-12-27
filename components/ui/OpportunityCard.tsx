@@ -6,7 +6,7 @@ import { spacing } from "../../app/theme/spacing";
 interface OpportunityCardProps {
   title: string;
   org: string;
-  status: ReactNode;   // 👈 NOT string
+  status: ReactNode;
   onPress?: () => void;
 }
 
@@ -26,18 +26,39 @@ export function OpportunityCard({
         style={{
           backgroundColor: colors.card,
           padding: spacing.md,
-          borderRadius: 12,
+          borderRadius: 16,
+
+          // 🌟 CARD ELEVATION (THIS IS KEY)
+          shadowColor: "#000",
+          shadowOpacity: 0.06,
+          shadowRadius: 12,
+          shadowOffset: { width: 0, height: 6 },
+          elevation: 4, // Android
         }}
       >
-        <Text style={{ fontSize: 16, fontWeight: "600", color: colors.textPrimary }}>
+        {/* 🔹 TITLE */}
+        <Text
+          style={{
+            fontSize: 16,
+            fontWeight: "600",
+            color: colors.textPrimary,
+          }}
+        >
           {title}
         </Text>
 
-        <Text style={{ color: colors.textSecondary, marginTop: spacing.xs }}>
+        {/* 🔹 ORGANIZATION */}
+        <Text
+          style={{
+            marginTop: spacing.xs,
+            color: colors.textSecondary,
+            fontSize: 13,
+          }}
+        >
           {org}
         </Text>
 
-        {/* 👇 component rendered here */}
+        {/* 🔹 STATUS */}
         <View style={{ marginTop: spacing.sm }}>
           {status}
         </View>

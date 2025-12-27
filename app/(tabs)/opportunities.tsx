@@ -31,24 +31,37 @@ const OPPORTUNITIES = [
 export default function Opportunities() {
   return (
     <View style={{ flex: 1, backgroundColor: colors.background }}>
-      {/* 🔹 HEADER */}
-      <View
-        style={{
-          padding: spacing.md,
-          borderBottomWidth: 1,
-          borderColor: colors.border,
-        }}
-      >
-        <Text
-          style={{
-            fontSize: 20,
-            fontWeight: "700",
-            color: colors.textPrimary,
-          }}
-        >
-          Opportunities
-        </Text>
-      </View>
+      
+      {/* 🔹 HEADER CARD */}
+     {/* 🔹 HEADER (FLAT, NOT A CARD) */}
+<View
+  style={{
+    paddingHorizontal: spacing.md,
+    paddingTop: spacing.lg,
+    paddingBottom: spacing.md,
+  }}
+>
+  <Text
+    style={{
+      fontSize: 22,
+      fontWeight: "700",
+      color: colors.textPrimary,
+    }}
+  >
+    Opportunities
+  </Text>
+
+  <Text
+    style={{
+      marginTop: spacing.xs,
+      fontSize: 14,
+      color: colors.textSecondary,
+    }}
+  >
+    Discover events, programs, and drives you can participate in.
+  </Text>
+</View>
+
 
       {/* 🔹 LIST */}
       <FlatList
@@ -56,7 +69,7 @@ export default function Opportunities() {
         keyExtractor={(item) => item.id}
         contentContainerStyle={{
           padding: spacing.md,
-          paddingBottom: spacing.lg,
+          paddingBottom: spacing.xl,
         }}
         renderItem={({ item }) => (
           <OpportunityCard
@@ -65,7 +78,7 @@ export default function Opportunities() {
             status={<StatusBadge status={item.status} />}
             onPress={() =>
               router.push({
-                pathname: "../opportunity/[id]",
+                pathname: "/opportunity/[id]",
                 params: { id: item.id },
               })
             }

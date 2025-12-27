@@ -1,14 +1,39 @@
-// theme/colors.ts
-
 export const colors = {
-  primary: "#2563EB",      // Nexus blue
-  secondary: "#16A34A",    // success / open
-  danger: "#DC2626",       // error / closed
+  /* =========================
+     BRAND
+  ========================== */
+  primary: "#2563EB",        // Nexus Blue (main CTA, links)
+  primarySoft: "#DBEAFE",    // Soft blue background (chips, highlights)
 
-  background: "#FFFFFF",  // app background
-  card: "#FFFFFF",        // card background
-  textPrimary: "#111827", // main text
-  textSecondary: "#6B7280",
+  /* =========================
+     STATUS COLORS
+  ========================== */
+  success: "#16A34A",        // Open / Approved
+  successSoft: "#DCFCE7",
 
+  danger: "#DC2626",         // Closed / Rejected
+  dangerSoft: "#FEE2E2",
+
+  warning: "#D97706",        // Optional (Pending)
+  warningSoft: "#FEF3C7",
+
+  /* =========================
+     BACKGROUNDS
+  ========================== */
+  background: "#F8F9FB",     // App background (VERY IMPORTANT change)
+  card: "#FFFFFF",           // Card surface
+
+  /* =========================
+     TEXT
+  ========================== */
+  textPrimary: "#111827",    // Main text (titles)
+  textSecondary: "#6B7280",  // Subtext
+  textMuted: "#9CA3AF",      // Placeholder / disabled
+
+  /* =========================
+     BORDERS & DIVIDERS
+  ========================== */
   border: "#E5E7EB",
+  divider: "#F1F5F9",
 };
+
