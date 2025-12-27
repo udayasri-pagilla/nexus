@@ -1,0 +1,78 @@
+import { router } from "expo-router";
+import { FlatList, Text, View } from "react-native";
+
+import { OpportunityCard } from "../../components/ui/OpportunityCard";
+import { StatusBadge } from "../../components/ui/StatusBadge";
+
+import { colors } from "../theme/colors";
+import { spacing } from "../theme/spacing";
+
+const PARTICIPATIONS = [
+  {
+    id: "1",
+    title: "Hackathon 2025",
+    org: "CSI Student Chapter",
+    status: "Applied",
+  },
+  {
+    id: "2",
+    title: "Web Development Workshop",
+    org: "IEEE Club",
+    status: "Approved",
+  },
+  {
+    id: "3",
+    title: "Campus Placement Drive",
+    org: "Training & Placement Cell",
+    status: "Rejected",
+  },
+];
+
+export default function Participations() {
+  return (
+    <View style={{ flex: 1, backgroundColor: colors.background }}>
+      
+      {/* 🔹 HEADER */}
+      <View
+        style={{
+          padding: spacing.md,
+          borderBottomWidth: 1,
+          borderColor: colors.border,
+        }}
+      >
+        <Text
+          style={{
+            fontSize: 20,
+            fontWeight: "700",
+            color: colors.textPrimary,
+          }}
+        >
+          My Participations
+        </Text>
+      </View>
+
+      {/* 🔹 LIST */}
+      <FlatList
+        data={PARTICIPATIONS}
+        keyExtractor={(item) => item.id}
+        contentContainerStyle={{
+          padding: spacing.md,
+          paddingBottom: spacing.lg,
+        }}
+        renderItem={({ item }) => (
+          <OpportunityCard
+            title={item.title}
+            org={item.org}
+            status={<StatusBadge status={item.status} />}
+            onPress={() =>
+              router.push({
+                pathname: "../opportunity/[id]",
+                params: { id: item.id },
+              })
+            }
+          />
+        )}
+      />
+    </View>
+  );
+}
