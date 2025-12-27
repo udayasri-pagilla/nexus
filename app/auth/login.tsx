@@ -1,17 +1,34 @@
-// import { Text, View } from "react-native";
+import { router } from "expo-router";
+import { useState } from "react";
+import { Alert, Pressable, Text, TextInput, View } from "react-native";
 
-// export default function Login() {
-//   return (
-//     <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
-//       <Text>Login Screen</Text>
-//     </View>
-//   );
-// }
-import { Pressable, Text, TextInput, View } from "react-native";
+import { loginUser } from "@/firebase/authService";
 import { colors } from "../theme/colors";
 import { spacing } from "../theme/spacing";
 
 export default function Login() {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [loading, setLoading] = useState(false);
+
+  const handleLogin = async () => {
+    if (!email || !password) {
+      Alert.alert("Error", "Please enter email and password");
+      return;
+    }
+
+    try {
+      setLoading(true);
+      await loginUser(email.trim(), password);
+      // ✅ DO NOT navigate here
+      // RootLayout will switch to (tabs)
+    } catch (error: any) {
+      Alert.alert("Login Failed", error.message);
+    } finally {
+      setLoading(false);
+    }
+  };
+
   return (
     <View
       style={{
@@ -49,8 +66,12 @@ export default function Login() {
       </Text>
 
       <TextInput
+        value={email}
+        onChangeText={setEmail}
         placeholder="Enter your email"
         placeholderTextColor={colors.textSecondary}
+        autoCapitalize="none"
+        keyboardType="email-address"
         style={{
           marginTop: spacing.xs,
           padding: spacing.md,
@@ -67,6 +88,8 @@ export default function Login() {
       </Text>
 
       <TextInput
+        value={password}
+        onChangeText={setPassword}
         placeholder="Enter your password"
         placeholderTextColor={colors.textSecondary}
         secureTextEntry
@@ -82,11 +105,14 @@ export default function Login() {
 
       {/* 🔹 LOGIN BUTTON */}
       <Pressable
+        onPress={handleLogin}
+        disabled={loading}
         style={{
           marginTop: spacing.xl,
           backgroundColor: colors.primary,
           padding: spacing.md,
           borderRadius: 8,
+          opacity: loading ? 0.7 : 1,
         }}
       >
         <Text
@@ -96,25 +122,27 @@ export default function Login() {
             fontWeight: "600",
           }}
         >
-          Login
+          {loading ? "Logging in..." : "Login"}
         </Text>
       </Pressable>
 
       {/* 🔹 REGISTER LINK */}
-      <Text
-        style={{
-          marginTop: spacing.md,
-          textAlign: "center",
-          color: colors.textSecondary,
-        }}
+      <Pressable
+        onPress={() => router.push("/auth/register")}
+        style={{ marginTop: spacing.md }}
       >
-        Don’t have an account?{" "}
-        <Text style={{ color: colors.primary, fontWeight: "600" }}>
-          Register
+        <Text
+          style={{
+            textAlign: "center",
+            color: colors.textSecondary,
+          }}
+        >
+          Don’t have an account?{" "}
+          <Text style={{ color: colors.primary, fontWeight: "600" }}>
+            Register
+          </Text>
         </Text>
-      </Text>
+      </Pressable>
     </View>
   );
 }
-
-

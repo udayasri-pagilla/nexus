@@ -1,10 +1,11 @@
 import { Pressable, Text, View } from "react-native";
 
+import { logoutUser } from "@/firebase/authService";
 import { colors } from "../theme/colors";
 import { spacing } from "../theme/spacing";
 
 export default function Profile() {
-  // TEMP user data (Firebase will replace this)
+  // TEMP user data (later from Firestore)
   const user = {
     name: "Udayasri",
     email: "udayasri@example.com",
@@ -13,18 +14,17 @@ export default function Profile() {
 
   return (
     <View style={{ flex: 1, backgroundColor: colors.background }}>
-      
-      {/* 🔹 HEADER (FLAT) */}
+      {/* 🔹 HEADER */}
       <View
         style={{
-          paddingHorizontal: spacing.md,
-          paddingTop: spacing.lg,
-          paddingBottom: spacing.md,
+          padding: spacing.md,
+          borderBottomWidth: 1,
+          borderColor: colors.border,
         }}
       >
         <Text
           style={{
-            fontSize: 22,
+            fontSize: 20,
             fontWeight: "700",
             color: colors.textPrimary,
           }}
@@ -33,36 +33,24 @@ export default function Profile() {
         </Text>
       </View>
 
-      {/* 🔹 PROFILE CARD */}
-      <View
-        style={{
-          marginHorizontal: spacing.md,
-          backgroundColor: colors.card,
-          borderRadius: 20,
-          padding: spacing.lg,
-          alignItems: "center",
-          shadowColor: "#000",
-          shadowOpacity: 0.06,
-          shadowRadius: 12,
-          shadowOffset: { width: 0, height: 6 },
-          elevation: 4,
-        }}
-      >
+      {/* 🔹 PROFILE CONTENT */}
+      <View style={{ padding: spacing.md }}>
         {/* Avatar */}
         <View
           style={{
-            height: 96,
-            width: 96,
-            borderRadius: 48,
+            height: 80,
+            width: 80,
+            borderRadius: 40,
             backgroundColor: colors.primary,
             justifyContent: "center",
             alignItems: "center",
+            alignSelf: "center",
           }}
         >
           <Text
             style={{
               color: "#fff",
-              fontSize: 36,
+              fontSize: 32,
               fontWeight: "700",
             }}
           >
@@ -74,9 +62,10 @@ export default function Profile() {
         <Text
           style={{
             marginTop: spacing.md,
-            fontSize: 20,
+            fontSize: 18,
             fontWeight: "600",
             color: colors.textPrimary,
+            textAlign: "center",
           }}
         >
           {user.name}
@@ -87,7 +76,7 @@ export default function Profile() {
           style={{
             marginTop: spacing.xs,
             color: colors.textSecondary,
-            fontSize: 14,
+            textAlign: "center",
           }}
         >
           {user.email}
@@ -98,40 +87,32 @@ export default function Profile() {
           style={{
             marginTop: spacing.sm,
             color: colors.textSecondary,
-            fontSize: 14,
+            textAlign: "center",
           }}
         >
           {user.organization}
         </Text>
-      </View>
 
-      {/* 🔹 ACTIONS */}
-      <View
-        style={{
-          marginTop: spacing.xxl,
-          marginHorizontal: spacing.md,
-        }}
-      >
-        <Pressable
-          onPress={() => console.log("Logout pressed")}
+        {/* 🔹 LOGOUT BUTTON */}
+        <View style={{ marginTop: spacing.xl }}>
+          <Pressable
+          onPress={async () => {
+            await logoutUser();
+            // 🔥 NO navigation
+            // Redirect happens automatically
+          }}
           style={{
             borderWidth: 1,
             borderColor: colors.danger,
             paddingVertical: spacing.md,
-            borderRadius: 14,
+            borderRadius: 8,
           }}
         >
-          <Text
-            style={{
-              color: colors.danger,
-              textAlign: "center",
-              fontWeight: "600",
-              fontSize: 15,
-            }}
-          >
+          <Text style={{ color: colors.danger, textAlign: "center", fontWeight: "600" }}>
             Logout
           </Text>
         </Pressable>
+        </View>
       </View>
     </View>
   );
