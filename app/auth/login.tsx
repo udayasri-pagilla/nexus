@@ -1,10 +1,120 @@
-import { Text, View } from "react-native";
+// import { Text, View } from "react-native";
+
+// export default function Login() {
+//   return (
+//     <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
+//       <Text>Login Screen</Text>
+//     </View>
+//   );
+// }
+import { Pressable, Text, TextInput, View } from "react-native";
+import { colors } from "../theme/colors";
+import { spacing } from "../theme/spacing";
 
 export default function Login() {
   return (
-    <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
-      <Text>Login Screen</Text>
+    <View
+      style={{
+        flex: 1,
+        padding: spacing.md,
+        backgroundColor: colors.background,
+        justifyContent: "center",
+      }}
+    >
+      {/* 🔹 APP TITLE */}
+      <Text
+        style={{
+          fontSize: 28,
+          fontWeight: "700",
+          color: colors.textPrimary,
+          textAlign: "center",
+        }}
+      >
+        NEXUS
+      </Text>
+
+      <Text
+        style={{
+          marginTop: spacing.xs,
+          color: colors.textSecondary,
+          textAlign: "center",
+        }}
+      >
+        One platform. Many opportunities.
+      </Text>
+
+      {/* 🔹 EMAIL */}
+      <Text style={{ marginTop: spacing.xl, color: colors.textPrimary }}>
+        Email
+      </Text>
+
+      <TextInput
+        placeholder="Enter your email"
+        placeholderTextColor={colors.textSecondary}
+        style={{
+          marginTop: spacing.xs,
+          padding: spacing.md,
+          borderWidth: 1,
+          borderColor: colors.border,
+          borderRadius: 8,
+          color: colors.textPrimary,
+        }}
+      />
+
+      {/* 🔹 PASSWORD */}
+      <Text style={{ marginTop: spacing.md, color: colors.textPrimary }}>
+        Password
+      </Text>
+
+      <TextInput
+        placeholder="Enter your password"
+        placeholderTextColor={colors.textSecondary}
+        secureTextEntry
+        style={{
+          marginTop: spacing.xs,
+          padding: spacing.md,
+          borderWidth: 1,
+          borderColor: colors.border,
+          borderRadius: 8,
+          color: colors.textPrimary,
+        }}
+      />
+
+      {/* 🔹 LOGIN BUTTON */}
+      <Pressable
+        style={{
+          marginTop: spacing.xl,
+          backgroundColor: colors.primary,
+          padding: spacing.md,
+          borderRadius: 8,
+        }}
+      >
+        <Text
+          style={{
+            color: "#fff",
+            textAlign: "center",
+            fontWeight: "600",
+          }}
+        >
+          Login
+        </Text>
+      </Pressable>
+
+      {/* 🔹 REGISTER LINK */}
+      <Text
+        style={{
+          marginTop: spacing.md,
+          textAlign: "center",
+          color: colors.textSecondary,
+        }}
+      >
+        Don’t have an account?{" "}
+        <Text style={{ color: colors.primary, fontWeight: "600" }}>
+          Register
+        </Text>
+      </Text>
     </View>
   );
 }
+
 
